@@ -168,6 +168,7 @@ const NavBottom = styled(NavLink)`
   position: absolute;
   top: 0;
   left: 0;
+  border-bottom: 2px solid var(--color-gray-900);
 
   @media (prefers-reduced-motion: no-preference) {
     transform: rotateX(-90deg);
