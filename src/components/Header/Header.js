@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { QUERIES, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import Icon from '../Icon';
-import UnstyledButton from '../UnstyledButton';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
-import VisuallyHidden from '../VisuallyHidden';
+import { QUERIES, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import Icon from "../Icon";
+import UnstyledButton from "../UnstyledButton";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavWrapper>
+            <NavLink href="/sale">Sale</NavLink>
+            <NavBottom href="/sale">Sale</NavBottom>
+          </NavWrapper>
+          <NavWrapper>
+            <NavLink href="/new">New&nbsp;Releases</NavLink>
+            <NavBottom href="/new">New&nbsp;Releases</NavBottom>
+          </NavWrapper>
+          <NavWrapper>
+            <NavLink href="/men">Men</NavLink>
+            <NavBottom href="/men">Men</NavBottom>
+          </NavWrapper>
+          <NavWrapper>
+            <NavLink href="/women">Women</NavLink>
+            <NavBottom href="/women">Women</NavBottom>
+          </NavWrapper>
+          <NavWrapper>
+            <NavLink href="/kids">Kids</NavLink>
+            <NavBottom href="/kids">Kids</NavBottom>
+          </NavWrapper>
+          <NavWrapper>
+            <NavLink href="/collections">Collections</NavLink>
+            <NavBottom href="/collections">Collections</NavBottom>
+          </NavWrapper>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -76,6 +94,7 @@ const DesktopNav = styled.nav`
   gap: clamp(1rem, 9.2vw - 4.5rem, 3.5rem);
   margin: 0px 48px;
 
+
   @media ${QUERIES.tabletAndSmaller} {
     display: none;
   }
@@ -114,15 +133,48 @@ const Filler = styled.div`
   }
 `;
 
+const NavWrapper = styled.div`
+  display: block;
+  color: var(--color-gray-900);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform-style: preserve-3d;
+    perspective: 100px;
+  }
+`;
+
 const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
 
-  &:first-of-type {
-    color: var(--color-secondary);
+  @media (prefers-reduced-motion: no-preference) {
+    display: block;
+    transition: transform 250ms;
+    transform-origin: bottom;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    ${NavWrapper}:hover & {
+      transform: rotateX(100deg);
+      transition: transform 400ms;
+    }
+  }
+`;
+
+const NavBottom = styled(NavLink)`
+  font-weight: ${WEIGHTS.bold};
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform: rotateX(-90deg);
+
+    ${NavWrapper}:hover & {
+      transform: rotateX(0deg);
+    }
   }
 `;
 
