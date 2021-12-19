@@ -104,11 +104,6 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 16px;
-
-  @media (prefers-reduced-motion: no-preference) {
-    animation: ${contentFadeIn} 500ms both;
-    animation-delay: 200ms;
-  }
 `;
 
 const NavLink = styled.a`
@@ -120,6 +115,26 @@ const NavLink = styled.a`
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${contentFadeIn} 500ms both;
+    animation-delay: 200ms;
+    &:nth-of-type(2) {
+      animation-delay: 250ms;
+    }
+    &:nth-of-type(3) {
+      animation-delay: 300ms;
+    }
+    &:nth-of-type(4) {
+      animation-delay: 350ms;
+    }
+    &:nth-of-type(5) {
+      animation-delay: 400ms;
+    }
+    &:nth-of-type(6) {
+      animation-delay: 450ms;
+    }
   }
 `;
 
@@ -135,7 +150,7 @@ const Footer = styled.footer`
 
   @media (prefers-reduced-motion: no-preference) {
     animation: ${contentFadeIn} 500ms both;
-    animation-delay: 200ms;
+    animation-delay: 500ms;
   }
 `;
 
